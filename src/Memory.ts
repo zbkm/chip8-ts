@@ -36,6 +36,15 @@ export class Memory {
     }
 
     /**
+     * Get multiple values from memory
+     * @param position {number} Start elements position
+     * @param length {number} Length
+     */
+    public getMultiple(position: number, length: number): (number|null)[] {
+        return this.data.slice(position - 1, position - 1 + length);
+    }
+
+    /**
      * Save an array of bytes in memory
      *
      * @param position Starting position of the save
