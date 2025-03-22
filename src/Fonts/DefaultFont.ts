@@ -1,9 +1,9 @@
-import type {BaseFont} from "./BaseFont.ts";
+import {BaseFont} from "./BaseFont.ts";
 
 /**
  * Most popular font - https://tobiasvl.github.io/blog/write-a-chip-8-emulator/
  */
-export class DefaultFont implements BaseFont {
+export class DefaultFont extends BaseFont {
     public static bytes() {
         return [
             0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
