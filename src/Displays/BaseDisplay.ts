@@ -11,15 +11,19 @@ export abstract class BaseDisplay {
      * @param {Array<number>} sprite Bytes array with sprite
      */
     public drawSprite(x: number, y: number, sprite: number[]): void {
+        x = x % this.WIDTH
+        y = y % this.HEIGHT
         for (const row of sprite) {
             const bits = row.toString(2).padStart(8, "0").split("").map(bit => bit === "1");
-            let localY = y;
+            let localX = x;
             for (const bit of bits) {
-                this.drawPixel(x, localY, bit);
-                localY++;
+                this.drawPixel(localX, y, bit);
+                localX++;
             }
-            x++;
+            y++;
         }
+
+        this.render();
     }
 
     /**
@@ -30,15 +34,15 @@ export abstract class BaseDisplay {
      * @param {number} value New value
      */
     public drawPixel(x: number, y: number, value: boolean): void {
-        if (x > this.WIDTH || y > this.HEIGHT) return;
-        this.state[y][x] = this.state[y][x] !== value;
+        if (x >= this.WIDTH || y > this.HEIGHT) return;
+        this.state[x][y] = this.state[x][y] !== value;
     }
 
     /**
      * Clear display state
      */
     public clear(): void {
-        this.state = Array.from({length: this.HEIGHT}, () => new Array(this.WIDTH).fill(false));
+        this.state = Array.from({length: this.WIDTH}, () => new Array(this.HEIGHT).fill(false));
     }
 
     /**
