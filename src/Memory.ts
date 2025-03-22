@@ -1,3 +1,9 @@
+export enum MEMORY_DEFAULT_VALUE {
+    LARGE = 4096,
+    RESERVED_BYTES = 0x200, // 512
+    FONT_POSITION = 0x50 // Default font position 050 – 09F
+}
+
 export class Memory {
     protected data: Array<null | number> = [];
 
@@ -5,7 +11,7 @@ export class Memory {
      * @param large Large memory in bytes. Default 4 kilobytes (4096 bytes)
      * @param reserved Reserved bytes in started. Default 512 bytes (like COSMAC VIP)
      */
-    constructor(large: number = 4096, reserved: number = 512) {
+    constructor(large: number = MEMORY_DEFAULT_VALUE.LARGE, reserved: number = MEMORY_DEFAULT_VALUE.RESERVED_BYTES) {
         this.data = new Array(large).fill(null);
         for (let i = 0; reserved - 1 > i; i++) {
             this.data[i] = 0;
@@ -14,7 +20,7 @@ export class Memory {
 
     /**
      * Save data in memory
-     * @param position Position in hex string
+     * @param position Position
      * @param value
      */
     public save(position: number, value: number) {
@@ -23,9 +29,22 @@ export class Memory {
 
     /**
      * Get data from memory
-     * @param position Position in hex string
+     * @param position Element position
      */
     public get(position: number): number | null {
         return this.data[position - 1];
+    }
+
+    /**
+     * Save an array of bytes in memory
+     *
+     * @param position Starting position of the save
+     * @param values Array with byte values
+     */
+    public setMultiple(position: number, values: number[]) {
+        for (const value of values) {
+            this.save(position, value);
+            position++;
+        }
     }
 }
