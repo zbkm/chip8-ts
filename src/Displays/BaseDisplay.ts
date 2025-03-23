@@ -2,7 +2,7 @@ export abstract class BaseDisplay {
     public WIDTH = 64;
     public HEIGHT = 32;
 
-    protected state: boolean[][] = [];
+    public state: boolean[][] = [];
 
     /**
      * Draw sprite in passed position
@@ -43,6 +43,7 @@ export abstract class BaseDisplay {
      */
     public clear(): void {
         this.state = Array.from({length: this.WIDTH}, () => new Array(this.HEIGHT).fill(false));
+        this.render();
     }
 
     /**
