@@ -7,6 +7,9 @@ import {Stack} from "../Stack.ts";
 import {VariableRegisters} from "../VariableRegisters.ts";
 import {ProgramCounter} from "../ProgramCounter.ts";
 import {getAllInstructions} from "../Instructions";
+import {DelayTimer} from "../Timers/DelayTimer.ts";
+import {SoundTimer} from "../Timers/SoundTimer.ts";
+import {MockSound} from "../Sounds/MockSound.ts";
 
 export const defaultEmulatorOptions = (): DI => {
     return {
@@ -17,6 +20,10 @@ export const defaultEmulatorOptions = (): DI => {
         stack: new Stack(),
         vr: new VariableRegisters(),
         pc: new ProgramCounter(),
-        instructions: getAllInstructions()
+        instructions: getAllInstructions(),
+        timers: {
+            delay: new DelayTimer(),
+            sound: new SoundTimer(new MockSound())
+        }
     };
 };
