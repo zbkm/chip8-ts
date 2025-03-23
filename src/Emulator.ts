@@ -1,24 +1,6 @@
-import {Stack} from "./Stack.ts";
-import {Memory, MEMORY_DEFAULT_VALUE} from "./Memory.ts";
-import {IndexRegister} from "./IndexRegister.ts";
-import {VariableRegisters} from "./VariableRegisters.ts";
-import {ConsoleDisplay} from "./Displays/ConsoleDisplay.ts";
-import {DefaultFont} from "./Fonts/DefaultFont.ts";
+import {MEMORY_DEFAULT_VALUE} from "./Memory.ts";
 import type {DI} from "./types.ts";
-import {getAllInstructions} from "./Instructions";
-import {ProgramCounter} from "./ProgramCounter.ts";
-
-
-const defaultEmulatorOptions: DI = {
-    display: new ConsoleDisplay(),
-    font: new DefaultFont(),
-    ir: new IndexRegister(),
-    memory: new Memory(),
-    stack: new Stack(),
-    vr: new VariableRegisters(),
-    pc: new ProgramCounter(),
-    instructions: getAllInstructions()
-};
+import {defaultEmulatorOptions} from "./utils/options.ts";
 
 export class Emulator {
     di: DI;
@@ -27,7 +9,7 @@ export class Emulator {
      * @param options {DI?} Object with dependencies. All optional
      */
     constructor(options?: Partial<DI>) {
-        this.di = Object.assign({}, defaultEmulatorOptions, options);
+        this.di = Object.assign({}, defaultEmulatorOptions(), options);
     }
 
     /**
