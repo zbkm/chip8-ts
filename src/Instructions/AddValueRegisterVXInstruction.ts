@@ -12,6 +12,8 @@ export class AddValueRegisterVXInstruction extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction[1]] += (instruction[2] << 4) | instruction[3];
+        di.vr.values[instruction[1]] = (
+            di.vr.values[instruction[1]] + ((instruction[2] << 4) | instruction[3])
+        ) & 0xFF;
     }
 }

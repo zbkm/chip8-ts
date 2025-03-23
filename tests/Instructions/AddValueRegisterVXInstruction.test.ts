@@ -17,7 +17,7 @@ describe("Instruction execute", () => {
     test("add value to register", () => {
         opcode.execute(di, [0x0, 0x1, 0x1, 0x2]);
         expect(di.vr.values[1]).toBe(0x12);
-        opcode.execute(di, [0x0, 0x1, 0x1, 0x2]);
-        expect(di.vr.values[1]).toBe(0x24);
+        opcode.execute(di, [0x0, 0x1, 0xF, 0xF]);
+        expect(di.vr.values[1]).toBe(0x11);
     });
 });
