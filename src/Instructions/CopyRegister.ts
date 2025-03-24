@@ -4,7 +4,7 @@ import type {DI, Instruction} from "../types.ts";
 /**
  * Store the value of register VY in register VX - 8XY0
  */
-export class StoreVYinVX extends BaseInstruction {
+export class CopyRegister extends BaseInstruction {
     mask: number = 0xF00F;
     value: number = 0x8000;
 

@@ -2,19 +2,18 @@ import {BaseInstruction} from "./BaseInstruction.ts";
 import type {DI, Instruction} from "../types.ts";
 
 /**
- * Skip the following instruction if the value of register VX is equal to the value of register VY - 5XY0
+ * Skip the following instruction if the value of register VX is not equal to NN - 4XNN
  */
-export class SkipIfVXEqualsVY extends BaseInstruction {
-    mask: number = 0xF00F;
-    value: number = 0x5000;
+export class SkipIfNotEquals extends BaseInstruction {
+    mask: number = 0xF000;
+    value: number = 0x4000;
 
     /**
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
         const vx = di.vr.values[instruction[1]];
-        const vy = di.vr.values[instruction[2]];
-        if (vx === vy) {
+        if (vx !== ((instruction[2] << 4) | instruction[3])) {
             di.pc.value += 2;
         }
     }

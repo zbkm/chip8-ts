@@ -1,12 +1,12 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
-import {SkipIfVXEqualsVY} from "../../src/Instructions/SkipIfVXEqualsVY.ts";
+import {SkipIfRegistersEquals} from "../../src/Instructions/SkipIfRegistersEquals.ts";
 
 
 const di = defaultEmulatorOptions();
 di.display = new NoDisplay();
-const opcode = new SkipIfVXEqualsVY();
+const opcode = new SkipIfRegistersEquals();
 
 test("Instruction match", () => {
     expect(opcode.matches([0x5, 0x5, 0xE, 0x0])).toBeTrue();

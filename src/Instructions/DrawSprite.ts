@@ -5,7 +5,7 @@ import type {DI, Instruction} from "../types.ts";
  * Draw a sprite at position VX, VY with N bytes of sprite data starting at the address stored in I
  * Set VF to 01 if any set pixels are changed to unset, and 00 otherwise - DXYN
  */
-export class DrawSpriteInstruction extends BaseInstruction {
+export class DrawSprite extends BaseInstruction {
     mask: number = 0xF000;
     value: number = 0xD000;
 

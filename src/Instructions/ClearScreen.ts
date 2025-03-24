@@ -4,7 +4,7 @@ import type {DI, Instruction} from "../types.ts";
 /**
  * Clear the screen - 00E0
  */
-export class ClearScreenInstruction extends BaseInstruction {
+export class ClearScreen extends BaseInstruction {
     mask: number = 0xFFFF;
     value: number = 0x00E0;
 

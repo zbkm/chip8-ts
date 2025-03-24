@@ -1,13 +1,13 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
-import {ClearScreenInstruction} from "../../src/Instructions/ClearScreenInstruction.ts";
+import {ClearScreen} from "../../src/Instructions/ClearScreen.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 
 
 const di = defaultEmulatorOptions();
 di.display = new NoDisplay();
 di.display.clear();
-const opcode = new ClearScreenInstruction();
+const opcode = new ClearScreen();
 
 test("Instruction match", () => {
     expect(opcode.matches([0x0, 0x0, 0xE, 0x0])).toBeTrue();

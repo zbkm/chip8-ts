@@ -1,12 +1,12 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
-import {StoreVYinVX} from "../../src/Instructions/StoreVYinVX.ts";
+import {CopyRegister} from "../../src/Instructions/CopyRegister.ts";
 
 
 const di = defaultEmulatorOptions();
 di.display = new NoDisplay();
-const opcode = new StoreVYinVX();
+const opcode = new CopyRegister();
 
 test("Instruction match", () => {
     expect(opcode.matches([0x8, 0x5, 0xE, 0x0])).toBeTrue();

@@ -1,16 +1,16 @@
-import {ClearScreenInstruction} from "./ClearScreenInstruction.ts";
+import {ClearScreen} from "./ClearScreen.ts";
 import type {BaseInstruction} from "./BaseInstruction.ts";
-import {JumpInstruction} from "./JumpInstruction.ts";
-import {StoreRegisterVXInstruction} from "./StoreRegisterVXInstruction.ts";
-import {AddValueRegisterVXInstruction} from "./AddValueRegisterVXInstruction.ts";
-import {StoreRegisterIInstruction} from "./StoreRegisterIInstruction.ts";
-import {DrawSpriteInstruction} from "./DrawSpriteInstruction.ts";
+import {Jump} from "./Jump.ts";
+import {StoreRegister} from "./StoreRegister.ts";
+import {AddToRegister} from "./AddToRegister.ts";
+import {StoreIndex} from "./StoreIndex.ts";
+import {DrawSprite} from "./DrawSprite.ts";
 import {SubroutineExecute} from "./SubroutineExecute.ts";
-import {SkipIfVXEqualsNN} from "./SkipIfVXEqualsNN.ts";
-import {SkipIfVXNotEqualsNN} from "./SkipIfVXNotEqualsNN.ts";
-import {SkipIfVXEqualsVY} from "./SkipIfVXEqualsVY.ts";
-import {SkipIfVXNotEqualsVY} from "./SkipIfVXNotEqualsVY.ts";
-import {StoreVYinVX} from "./StoreVYinVX.ts";
+import {SkipIfEquals} from "./SkipIfEquals.ts";
+import {SkipIfNotEquals} from "./SkipIfNotEquals.ts";
+import {SkipIfRegistersEquals} from "./SkipIfRegistersEquals.ts";
+import {SkipIfRegistersNotEquals} from "./SkipIfRegistersNotEquals.ts";
+import {CopyRegister} from "./CopyRegister.ts";
 import {BinaryOr} from "./BinaryOr.ts";
 import {BinaryAnd} from "./BinaryAnd.ts";
 import {BinaryXor} from "./BinaryXor.ts";
@@ -34,16 +34,16 @@ import {SubroutineReturn} from "./SubroutineReturn.ts";
 
 export const getAllInstructions = (): BaseInstruction[] => [
     // 0NNN - execute machine language subroutine - skip
-    new ClearScreenInstruction(), // 00E0
+    new ClearScreen(), // 00E0
     new SubroutineReturn(), // 00EE
-    new JumpInstruction(), // 1NNN
+    new Jump(), // 1NNN
     new SubroutineExecute(), // 2NNN
-    new SkipIfVXEqualsNN(), // 3XNN
-    new SkipIfVXNotEqualsNN(), // 4XNN
-    new SkipIfVXEqualsVY(), // 5XY0
-    new StoreRegisterVXInstruction(), // 6XNN
-    new AddValueRegisterVXInstruction(), // 7XNN
-    new StoreVYinVX(), // 8XY0
+    new SkipIfEquals(), // 3XNN
+    new SkipIfNotEquals(), // 4XNN
+    new SkipIfRegistersEquals(), // 5XY0
+    new StoreRegister(), // 6XNN
+    new AddToRegister(), // 7XNN
+    new CopyRegister(), // 8XY0
     new BinaryOr(), // 8XY1
     new BinaryAnd(), // 8XY2
     new BinaryXor(), // 8XY3
@@ -52,11 +52,11 @@ export const getAllInstructions = (): BaseInstruction[] => [
     new ShiftRight(), // 8XY6
     new SubtractYX(), // 8XY7
     new ShiftLeft(), // 8XYE
-    new SkipIfVXNotEqualsVY(), // 9XY0
-    new StoreRegisterIInstruction(), // ANNN
+    new SkipIfRegistersNotEquals(), // 9XY0
+    new StoreIndex(), // ANNN
     new JumpWithOffset(), // BNNN
     new Random(), // CXNN
-    new DrawSpriteInstruction(), // DXYN
+    new DrawSprite(), // DXYN
     // EX9E
     // EXA1
     new TimerDelayGet(), // FX07

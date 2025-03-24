@@ -1,6 +1,6 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
-import {DrawSpriteInstruction} from "../../src/Instructions/DrawSpriteInstruction.ts";
+import {DrawSprite} from "../../src/Instructions/DrawSprite.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {parseDisplay} from "../utils/parseDisplay.ts";
 
@@ -8,7 +8,7 @@ import {parseDisplay} from "../utils/parseDisplay.ts";
 const di = defaultEmulatorOptions();
 di.display = new NoDisplay();
 di.display.clear();
-const opcode = new DrawSpriteInstruction();
+const opcode = new DrawSprite();
 
 test("Instruction match", () => {
     expect(opcode.matches([0xD, 0x0, 0xE, 0x0])).toBeTrue();

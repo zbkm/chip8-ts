@@ -1,12 +1,12 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
-import {JumpInstruction} from "../../src/Instructions/JumpInstruction.ts";
+import {Jump} from "../../src/Instructions/Jump.ts";
 
 
 const di = defaultEmulatorOptions();
 di.display = new NoDisplay();
-const opcode = new JumpInstruction();
+const opcode = new Jump();
 
 test("Instruction match", () => {
     expect(opcode.matches([0x1, 0x0, 0xE, 0xE])).toBeTrue();
