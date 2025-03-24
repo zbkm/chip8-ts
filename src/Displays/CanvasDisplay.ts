@@ -15,6 +15,8 @@ export class CanvasDisplay extends BaseDisplay {
             for (let x = 0; x < this.WIDTH; x++) {
                 if (this.state[x][y]) {
                     this.ctx.fillRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
+                } else {
+                    this.ctx.clearRect(x * this.cellSize, y * this.cellSize, this.cellSize, this.cellSize);
                 }
             }
         }
