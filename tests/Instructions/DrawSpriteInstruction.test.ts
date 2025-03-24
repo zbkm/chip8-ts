@@ -2,6 +2,7 @@ import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {DrawSpriteInstruction} from "../../src/Instructions/DrawSpriteInstruction.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
+import {parseDisplay} from "../utils/parseDisplay.ts";
 
 
 const di = defaultEmulatorOptions();
@@ -20,6 +21,8 @@ describe("Instruction execute", () => {
         di.ir.value = 0x100;
         di.vr.values[0x1] = 0x5;
         di.vr.values[0x2] = 0x5;
+        di.vr.values[0xF] = 0x1; // vF flag should be 0 after instruction exec
+
         opcode.execute(di, [0xD, 0x1, 0x2, 5]);
 
         const display = `
@@ -57,15 +60,13 @@ describe("Instruction execute", () => {
 ................................................................
 `;
 
-        const parsedDisplay = display
-            .trim()
-            .split("\n")
-            .map(row => row.split("").map(c => c === "█"));
-
-        for (let y = 0; y < parsedDisplay[0].length; y++) {
-            for (let x = 0; x < parsedDisplay.length; x++) {
-                expect(di.display.state[y][x]).toBe(parsedDisplay[x][y]);
-            }
-        }
+        expect(di.display.state).toEqual(parseDisplay(display));
+        expect(di.vr.values[0xF]).toBe(0);
     });
+    test("clear sprite", () => {
+        di.ir.value = 0x100;
+        opcode.execute(di, [0xD, 0x1, 0x2, 5]);
+        expect(di.vr.values[0xF]).toBe(1);
+        expect(di.display.state.flat()).not.toContain(true);
+    })
 });

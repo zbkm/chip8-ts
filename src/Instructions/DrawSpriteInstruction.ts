@@ -16,6 +16,6 @@ export class DrawSpriteInstruction extends BaseInstruction {
         const x = di.vr.values[instruction[1]];
         const y = di.vr.values[instruction[2]];
         const sprite: number[] = di.memory.getMultiple(di.ir.value, instruction[3]) as number[];
-        di.display.drawSprite(x, y, sprite);
+        di.vr.values[0xF] = +di.display.drawSprite(x, y, sprite);
     }
 }
