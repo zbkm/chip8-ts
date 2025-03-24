@@ -4,6 +4,7 @@ import {Instruction} from "./Instruction.ts";
 
 export class Emulator {
     di: DI;
+    timer: Timer | undefined;
 
     /**
      * @param options {DI?} Object with dependencies. All optional
@@ -17,22 +18,35 @@ export class Emulator {
      * Run program
      * @param program {number[]} Program bytes
      */
-    async run(program: number[]) {
+    public async run(program: number[]) {
         this.di.pc.value = this.di.memory.info.reserved;
         this.di.memory.setMultiple(this.di.memory.info.reserved, program);
         this.di.display.clear();
 
-        while (true) {
-            const instruction = new Instruction(this.di.memory.get(this.di.pc.value)! << 8 | this.di.memory.get(this.di.pc.value + 1)!);
-
-            this.di.pc.value = this.di.pc.value + 2;
-            const opcode = this.di.instructions.find(instr => instr.matches(instruction));
-
-            if (opcode) {
-                opcode.execute(this.di, instruction);
-            }
-
-            await new Promise(r => setTimeout(r, 2));
-        }
+        this.timer = setInterval(this.step, 1);
     }
+
+    /**
+     * Stop program
+     */
+    public stop() {
+        clearInterval(this.timer!);
+        this.di.timers.sound.stop();
+        this.di.timers.delay.stop();
+    }
+
+    /**
+     * Execution step
+     * @protected
+     */
+    protected step = async () => {
+        const instruction = new Instruction(this.di.memory.get(this.di.pc.value)! << 8 | this.di.memory.get(this.di.pc.value + 1)!);
+
+        this.di.pc.value = this.di.pc.value + 2;
+        const opcode = this.di.instructions.find(instr => instr.matches(instruction));
+
+        if (opcode) {
+            opcode.execute(this.di, instruction);
+        }
+    };
 }
