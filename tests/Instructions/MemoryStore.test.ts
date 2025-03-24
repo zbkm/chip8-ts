@@ -1,12 +1,10 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
-import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {MemoryStore} from "../../src/Instructions/MemoryStore.ts";
 import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
-di.display = new NoDisplay();
 const opcode = new MemoryStore();
 
 test("Instruction match", () => {

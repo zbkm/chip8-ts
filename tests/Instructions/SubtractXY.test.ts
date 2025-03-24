@@ -1,12 +1,10 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
-import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {SubtractXY} from "../../src/Instructions/SubtractXY.ts";
 import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
-di.display = new NoDisplay();
 const opcode = new SubtractXY();
 
 test("Instruction match", () => {

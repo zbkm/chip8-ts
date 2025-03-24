@@ -1,6 +1,6 @@
 import {BaseSound} from "./BaseSound.ts";
 
-export class MockSound extends BaseSound {
+export class NoSound extends BaseSound {
     /**
      * @inheritDoc
      */

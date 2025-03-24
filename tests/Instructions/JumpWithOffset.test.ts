@@ -1,12 +1,10 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
-import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {JumpWithOffset} from "../../src/Instructions/JumpWithOffset.ts";
 import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
-di.display = new NoDisplay();
 const opcode = new JumpWithOffset();
 
 test("Instruction match", () => {

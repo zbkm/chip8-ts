@@ -1,12 +1,10 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
-import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {BinaryCodedDecimalConversion} from "../../src/Instructions/BinaryCodedDecimalConversion.ts";
 import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
-di.display = new NoDisplay();
 const opcode = new BinaryCodedDecimalConversion();
 
 test("Instruction match", () => {

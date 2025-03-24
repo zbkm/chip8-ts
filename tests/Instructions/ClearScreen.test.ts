@@ -1,12 +1,10 @@
 import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {ClearScreen} from "../../src/Instructions/ClearScreen.ts";
-import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
-di.display = new NoDisplay();
 di.display.clear();
 const opcode = new ClearScreen();
 
