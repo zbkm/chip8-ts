@@ -2,6 +2,7 @@ import {describe, expect, test} from "bun:test";
 import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {BinaryCodedDecimalConversion} from "../../src/Instructions/BinaryCodedDecimalConversion.ts";
+import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
@@ -9,16 +10,16 @@ di.display = new NoDisplay();
 const opcode = new BinaryCodedDecimalConversion();
 
 test("Instruction match", () => {
-    expect(opcode.matches([0xF, 0x5, 0x3, 0x3])).toBeTrue();
-    expect(opcode.matches([0xF, 0x0, 0x3, 0x0])).toBeFalse();
-    expect(opcode.matches([0x0, 0x0, 0xE, 0x0])).toBeFalse();
+    expect(opcode.matches(new Instruction(0xF533))).toBeTrue();
+    expect(opcode.matches(new Instruction(0xF030))).toBeFalse();
+    expect(opcode.matches(new Instruction(0x0000))).toBeFalse();
 });
 
 describe("Instruction execute", () => {
     test("bcd", () => {
         di.ir.value = 0x250;
         di.vr.values[1] = 0x9C;
-        opcode.execute(di, [0xF, 0x1, 0x1, 0xE]);
+        opcode.execute(di, new Instruction(0xF11E));
         expect(di.memory.get(0x250)).toBe(0x1);
         expect(di.memory.get(0x251)).toBe(0x5);
         expect(di.memory.get(0x252)).toBe(0x6);

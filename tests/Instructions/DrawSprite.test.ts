@@ -3,6 +3,7 @@ import {defaultEmulatorOptions} from "../../src/utils/options.ts";
 import {DrawSprite} from "../../src/Instructions/DrawSprite.ts";
 import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 import {parseDisplay} from "../utils/parseDisplay.ts";
+import {Instruction} from "../../src/Instruction.ts";
 
 
 const di = defaultEmulatorOptions();
@@ -11,8 +12,8 @@ di.display.clear();
 const opcode = new DrawSprite();
 
 test("Instruction match", () => {
-    expect(opcode.matches([0xD, 0x0, 0xE, 0x0])).toBeTrue();
-    expect(opcode.matches([0x0, 0x0, 0xE, 0xE])).toBeFalse();
+    expect(opcode.matches(new Instruction(0xD0E0))).toBeTrue();
+    expect(opcode.matches(new Instruction(0x0000))).toBeFalse();
 });
 
 describe("Instruction execute", () => {
@@ -23,7 +24,7 @@ describe("Instruction execute", () => {
         di.vr.values[0x2] = 0x5;
         di.vr.values[0xF] = 0x1; // vF flag should be 0 after instruction exec
 
-        opcode.execute(di, [0xD, 0x1, 0x2, 5]);
+        opcode.execute(di, new Instruction(0xD125));
 
         const display = `
 ................................................................
@@ -65,7 +66,7 @@ describe("Instruction execute", () => {
     });
     test("clear sprite", () => {
         di.ir.value = 0x100;
-        opcode.execute(di, [0xD, 0x1, 0x2, 5]);
+        opcode.execute(di, new Instruction(0xD125));
         expect(di.vr.values[0xF]).toBe(1);
         expect(di.display.state.flat()).not.toContain(true);
     })

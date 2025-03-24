@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Add the value NN to register VX - 7XNN
@@ -12,8 +13,8 @@ export class AddToRegister extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction[1]] = (
-            di.vr.values[instruction[1]] + ((instruction[2] << 4) | instruction[3])
+        di.vr.values[instruction.x] = (
+            di.vr.values[instruction.x] + instruction.nn
         ) & 0xFF;
     }
 }

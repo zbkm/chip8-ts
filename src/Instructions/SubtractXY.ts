@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Add the value of register VY to register VX
@@ -14,9 +15,9 @@ export class SubtractXY extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const minuend = di.vr.values[instruction[1]];
-        const subtrahend = di.vr.values[instruction[2]];
-        di.vr.values[instruction[1]] = (minuend - subtrahend) & 0xFF;
+        const minuend = di.vr.values[instruction.x];
+        const subtrahend = di.vr.values[instruction.y];
+        di.vr.values[instruction.x] = (minuend - subtrahend) & 0xFF;
         di.vr.values[0xF] = minuend >= subtrahend ? 0x1 : 0x0; // 1 for not occur and 0 for occur
     }
 }

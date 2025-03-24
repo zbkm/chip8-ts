@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Store the value of register VY in register VX - 8XY0
@@ -12,6 +13,6 @@ export class CopyRegister extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction[1]] = di.vr.values[instruction[2]];
+        di.vr.values[instruction.x] = di.vr.values[instruction.y];
     }
 }

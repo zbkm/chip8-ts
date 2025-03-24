@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Store memory address NNN in register I - ANNN
@@ -12,6 +13,6 @@ export class StoreIndex extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.ir.value = (instruction[1] << 8) | (instruction[2] << 4) | instruction[3];
+        di.ir.value = instruction.nnn;
     }
 }

@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Jump to address NNN - 1NNN
@@ -12,6 +13,6 @@ export class Jump extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.pc.value = (instruction[1] << 8) | (instruction[2] << 4) | instruction[3];
+        di.pc.value = instruction.nnn;
     }
 }

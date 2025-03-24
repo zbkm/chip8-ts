@@ -1,4 +1,5 @@
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 
 export abstract class BaseInstruction {
@@ -10,8 +11,7 @@ export abstract class BaseInstruction {
      * @param instruction {Instruction} Instruction bytes
      */
     public matches(instruction: Instruction): boolean {
-        const fullInstruction = instruction.reduce((acc, byte) => (acc << 4) | byte, 0);
-        return (this.mask & fullInstruction) == this.value;
+        return (this.mask & instruction.full) == this.value;
     };
 
     /**

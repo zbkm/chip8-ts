@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Store number NN in register VX - 6XNN
@@ -12,6 +13,6 @@ export class StoreRegister extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction[1]] = (instruction[2] << 4) | instruction[3];
+        di.vr.values[instruction.x] = instruction.nn;
     }
 }

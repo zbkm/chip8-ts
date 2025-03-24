@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Skip the following instruction if the value of register VX is equal to the value of register VY - 5XY0
@@ -12,8 +13,8 @@ export class SkipIfRegistersEquals extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const vx = di.vr.values[instruction[1]];
-        const vy = di.vr.values[instruction[2]];
+        const vx = di.vr.values[instruction.x];
+        const vy = di.vr.values[instruction.y];
         if (vx === vy) {
             di.pc.value += 2;
         }

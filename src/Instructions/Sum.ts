@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Add the value of register VY to register VX
@@ -14,8 +15,8 @@ export class Sum extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const result = di.vr.values[instruction[1]] + di.vr.values[instruction[2]];
-        di.vr.values[instruction[1]] = result & 0xFF;
+        const result = di.vr.values[instruction.x] + di.vr.values[instruction.y];
+        di.vr.values[instruction.x] = result & 0xFF;
         di.vr.values[0xF] = result > 0xFF ? 0x1 : 0x0;  // 0 for not occur and 1 for occur
     }
 }

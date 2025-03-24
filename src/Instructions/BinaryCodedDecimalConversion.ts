@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Store the binary-coded decimal equivalent of the value stored in register VX at addresses I, I + 1, and I + 2 - FX33
@@ -12,7 +13,7 @@ export class BinaryCodedDecimalConversion extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const number = di.vr.values[instruction[1]];
+        const number = di.vr.values[instruction.x];
 
         di.memory.save(di.ir.value, ~~(number / 100));
         di.memory.save(di.ir.value + 1, ~~(number / 10 % 10));

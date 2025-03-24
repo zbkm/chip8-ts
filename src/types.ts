@@ -9,8 +9,6 @@ import type {BaseInstruction} from "./Instructions/BaseInstruction.ts";
 import type {DelayTimer} from "./Timers/DelayTimer.ts";
 import type {SoundTimer} from "./Timers/SoundTimer.ts";
 
-export type Instruction = [number, number, number, number];
-
 export type DI = {
     stack: Stack,
     memory: Memory,

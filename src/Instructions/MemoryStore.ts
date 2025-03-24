@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Store the values of registers V0 to VX inclusive in memory starting at address I
@@ -13,7 +14,7 @@ export class MemoryStore extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        for (let i = 0; instruction[1] >= i; i++) {
+        for (let i = 0; instruction.x >= i; i++) {
             di.memory.save(i + di.ir.value, di.vr.values[i]);
         }
 

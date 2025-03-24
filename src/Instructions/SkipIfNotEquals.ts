@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Skip the following instruction if the value of register VX is not equal to NN - 4XNN
@@ -12,8 +13,8 @@ export class SkipIfNotEquals extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const vx = di.vr.values[instruction[1]];
-        if (vx !== ((instruction[2] << 4) | instruction[3])) {
+        const vx = di.vr.values[instruction.x];
+        if (vx !== instruction.nn) {
             di.pc.value += 2;
         }
     }

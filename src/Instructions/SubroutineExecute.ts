@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Execute subroutine starting at address NNN - 2NNN
@@ -13,6 +14,6 @@ export class SubroutineExecute extends BaseInstruction {
      */
     execute(di: DI, instruction: Instruction): void {
         di.stack.push(di.pc.value);
-        di.pc.value = (instruction[1] << 8) | (instruction[2] << 4) | instruction[3];
+        di.pc.value = instruction.nnn;
     }
 }

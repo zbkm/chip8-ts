@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Store the value of register VY shifted left one bit in register VX
@@ -14,8 +15,8 @@ export class ShiftLeft extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const value = di.vr.values[instruction[2]];
-        di.vr.values[instruction[1]] = (value << 1) & 0xFF;
+        const value = di.vr.values[instruction.y];
+        di.vr.values[instruction.x] = (value << 1) & 0xFF;
         di.vr.values[0xF] = (value & 0x80) ? 1 : 0; // shifted bit. 0x80 - 0b10000000 - MSb
     }
 }

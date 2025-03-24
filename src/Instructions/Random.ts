@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Set VX to a random number with a mask of NN - CXNN
@@ -12,6 +13,6 @@ export class Random extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction[1]] = Math.floor(Math.random() * 0xFF) & ((instruction[2] << 4) | instruction[3]);
+        di.vr.values[instruction.x] = Math.floor(Math.random() * 0xFF) & instruction.nn;
     }
 }

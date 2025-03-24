@@ -1,5 +1,6 @@
 import {BaseInstruction} from "./BaseInstruction.ts";
-import type {DI, Instruction} from "../types.ts";
+import type {DI} from "../types.ts";
+import type {Instruction} from "../Instruction.ts";
 
 /**
  * Set the delay timer to the value of register VX - FX15
@@ -12,6 +13,6 @@ export class TimerDelaySet extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.timers.delay.timer = di.vr.values[instruction[1]];
+        di.timers.delay.timer = di.vr.values[instruction.x];
     }
 }
