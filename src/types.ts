@@ -8,6 +8,7 @@ import type {ProgramCounter} from "./ProgramCounter.ts";
 import type {BaseInstruction} from "./Instructions/BaseInstruction.ts";
 import type {DelayTimer} from "./Timers/DelayTimer.ts";
 import type {SoundTimer} from "./Timers/SoundTimer.ts";
+import type {BaseKeypad} from "./Keypad/BaseKeypad.ts";
 
 export type DI = {
     stack: Stack,
@@ -21,5 +22,11 @@ export type DI = {
     timers: {
         delay: DelayTimer,
         sound: SoundTimer
-    }
+    },
+    keypad: BaseKeypad
 }
+
+export type Keys = "1" | "2" | "3" | "C" |
+    "4" | "5" | "6" | "D" |
+    "7" | "8" | "9" | "E" |
+    "A" | "0" | "B" | "F"

@@ -10,6 +10,8 @@ import {getAllInstructions} from "../Instructions";
 import {DelayTimer} from "../Timers/DelayTimer.ts";
 import {SoundTimer} from "../Timers/SoundTimer.ts";
 import {MockSound} from "../Sounds/MockSound.ts";
+import {ConsoleKeypad} from "../Keypad/ConsoleKeypad.ts";
+import {NoKeypad} from "../Keypad/NoKeypad.ts";
 
 export const defaultEmulatorOptions = (): DI => {
     return {
@@ -24,6 +26,7 @@ export const defaultEmulatorOptions = (): DI => {
         timers: {
             delay: new DelayTimer(),
             sound: new SoundTimer(new MockSound())
-        }
+        },
+        keypad: new NoKeypad()
     };
 };
