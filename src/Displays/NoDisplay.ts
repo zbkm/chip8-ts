@@ -7,5 +7,6 @@ export class NoDisplay extends BaseDisplay {
     /**
      * @inheritDoc
      */
-    public render(): void {}
+    public render(): void {
+    }
 }

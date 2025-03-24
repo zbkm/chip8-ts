@@ -6,7 +6,7 @@ import {type Keys} from "../types.ts";
  * Mock keypad for testing
  */
 export class MockKeypad extends BaseKeypad {
-    protected _key: Keys|null = null;
+    protected _key: Keys | null = null;
     /**
      * @inheritDoc
      */
@@ -14,7 +14,7 @@ export class MockKeypad extends BaseKeypad {
         return this._key;
     }
 
-    set key(value: Keys|null) {
+    set key(value: Keys | null) {
         this._key = value;
     }
 }

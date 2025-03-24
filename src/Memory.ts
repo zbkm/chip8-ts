@@ -12,7 +12,6 @@ const defaultPosition: MemoryInfo = {
 
 export class Memory {
     protected data: Array<null | number> = [];
-    protected _info: MemoryInfo;
 
     /**
      * @param info {MemoryInfo?}
@@ -25,6 +24,8 @@ export class Memory {
             this.data[i] = 0;
         }
     }
+
+    protected _info: MemoryInfo;
 
     /**
      * Memory Info
@@ -56,7 +57,7 @@ export class Memory {
      * @param position {number} Start elements position
      * @param length {number} Length
      */
-    public getMultiple(position: number, length: number): (number|null)[] {
+    public getMultiple(position: number, length: number): (number | null)[] {
         return this.data.slice(position - 1, position - 1 + length);
     }
 

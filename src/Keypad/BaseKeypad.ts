@@ -6,5 +6,5 @@ export abstract class BaseKeypad {
      * Get current pressed key
      * @returns {Keys|null} key
      */
-    abstract get key(): Keys|null;
+    abstract get key(): Keys | null;
 }

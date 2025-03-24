@@ -2,7 +2,7 @@ export abstract class BaseTimer {
     public timer = 0;
 
     constructor() {
-        setInterval(() => this.decrementTimer(), 1000 / 60)
+        setInterval(() => this.decrementTimer(), 1000 / 60);
     }
 
     /**

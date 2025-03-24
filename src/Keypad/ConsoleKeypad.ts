@@ -3,8 +3,6 @@ import {type Keys} from "../types.ts";
 
 
 export class ConsoleKeypad extends BaseKeypad {
-    _key: Keys | null = null;
-
     keyMapping: Record<string, Keys> = {
         "1": "1", "2": "2", "3": "3", "4": "C",
         "Q": "4", "W": "5", "E": "6", "R": "D",
@@ -17,6 +15,8 @@ export class ConsoleKeypad extends BaseKeypad {
         process.stdin.setRawMode(true);
         process.stdin.on("data", this.handlePress);
     }
+
+    _key: Keys | null = null;
 
     /**
      * @inheritDoc
@@ -37,9 +37,9 @@ export class ConsoleKeypad extends BaseKeypad {
         if (pressedKey === "\u0003") {
             process.exit();
         }
-    }
+    };
 
     protected resetPress = (): void => {
         this._key = null;
-    }
+    };
 }

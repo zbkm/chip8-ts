@@ -7,7 +7,7 @@ export class ConsoleDisplay extends BaseDisplay {
     public render(): void {
         console.clear();
         console.log(
-            Array.from({ length: this.HEIGHT }, (_, col) =>
+            Array.from({length: this.HEIGHT}, (_, col) =>
                 this.state.map(row => row[col] ? "█" : ".").join("")
             ).join("\n")
         );
