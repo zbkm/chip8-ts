@@ -16,7 +16,7 @@ export class SubtractYX extends BaseInstruction {
     execute(di: DI, instruction: Instruction): void {
         const minuend = di.vr.values[instruction[2]];
         const subtrahend = di.vr.values[instruction[1]];
-        di.vr.values[0xF] = minuend > subtrahend ? 0x1 : 0x0; // 1 for not occur and 0 for occur
         di.vr.values[instruction[1]] = (minuend - subtrahend) & 0xFF;
+        di.vr.values[0xF] = minuend >= subtrahend ? 0x1 : 0x0; // 1 for not occur and 0 for occur
     }
 }

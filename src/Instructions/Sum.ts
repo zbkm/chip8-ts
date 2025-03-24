@@ -15,8 +15,7 @@ export class Sum extends BaseInstruction {
      */
     execute(di: DI, instruction: Instruction): void {
         const result = di.vr.values[instruction[1]] + di.vr.values[instruction[2]];
-
-        di.vr.values[0xF] = result > 0xFF ? 0x1 : 0x0;  // 0 for not occur and 1 for occur
         di.vr.values[instruction[1]] = result & 0xFF;
+        di.vr.values[0xF] = result > 0xFF ? 0x1 : 0x0;  // 0 for not occur and 1 for occur
     }
 }
