@@ -30,6 +30,9 @@ import {BinaryCodedDecimalConversion} from "./BinaryCodedDecimalConversion.ts";
 import {MemoryStore} from "./MemoryStore.ts";
 import {MemoryLoad} from "./MemoryLoad.ts";
 import {SubroutineReturn} from "./SubroutineReturn.ts";
+import {SkipIfKeyPressed} from "./SkipIfKeyPressed.ts";
+import {SkipIfKeyNotPressed} from "./SkipIfKeyNotPressed.ts";
+import {WaitKey} from "./WaitKey.ts";
 
 
 export const getAllInstructions = (): BaseInstruction[] => [
@@ -57,10 +60,10 @@ export const getAllInstructions = (): BaseInstruction[] => [
     new JumpWithOffset(), // BNNN
     new Random(), // CXNN
     new DrawSprite(), // DXYN
-    // EX9E
-    // EXA1
+    new SkipIfKeyPressed(), // EX9E
+    new SkipIfKeyNotPressed(), // EXA1
     new TimerDelayGet(), // FX07
-    // FX0A
+    new WaitKey(), // FX0A
     new TimerDelaySet(), // FX15
     new TimerSoundSet(), // FX18
     new AddToIndex(), // FX1E
