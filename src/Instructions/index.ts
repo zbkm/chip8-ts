@@ -24,10 +24,18 @@ import {Random} from "./Random.ts";
 import {TimerDelaySet} from "./TimerDelaySet.ts";
 import {TimerDelayGet} from "./TimerDelayGet.ts";
 import {TimerSoundSet} from "./TimerSoundSet.ts";
+import {AddToIndex} from "./AddToIndex.ts";
+import {FontCharacter} from "./FontCharacter.ts";
+import {BinaryCodedDecimalConversion} from "./BinaryCodedDecimalConversion.ts";
+import {MemoryStore} from "./MemoryStore.ts";
+import {MemoryLoad} from "./MemoryLoad.ts";
+import {SubroutineReturn} from "./SubroutineReturn.ts";
 
 
 export const getAllInstructions = (): BaseInstruction[] => [
+    // 0NNN - execute machine language subroutine - skip
     new ClearScreenInstruction(), // 00E0
+    new SubroutineReturn(), // 00EE
     new JumpInstruction(), // 1NNN
     new SubroutineExecute(), // 2NNN
     new SkipIfVXEqualsNN(), // 3XNN
@@ -51,9 +59,13 @@ export const getAllInstructions = (): BaseInstruction[] => [
     new DrawSpriteInstruction(), // DXYN
     // EX9E
     // EXA1
-    new TimerDelayGet(), // FX08
+    new TimerDelayGet(), // FX07
     // FX0A
     new TimerDelaySet(), // FX15
     new TimerSoundSet(), // FX18
-
+    new AddToIndex(), // FX1E
+    new FontCharacter(), // FX29
+    new BinaryCodedDecimalConversion(), // FX33
+    new MemoryStore(), // FX55
+    new MemoryLoad() // FX65
 ];
