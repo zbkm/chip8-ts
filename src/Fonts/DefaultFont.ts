@@ -4,7 +4,7 @@ import {BaseFont} from "./BaseFont.ts";
  * Most popular font - https://tobiasvl.github.io/blog/write-a-chip-8-emulator/
  */
 export class DefaultFont extends BaseFont {
-    public static bytes() {
+    public bytes() {
         return [
             0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
             0x20, 0x60, 0x20, 0x20, 0x70, // 1
