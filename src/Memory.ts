@@ -1,21 +1,37 @@
-export enum MEMORY_DEFAULT_VALUE {
-    LARGE = 4096,
-    RESERVED_BYTES = 0x200, // 512
-    FONT_POSITION = 0x50 // Default font position 050 – 09F
+type MemoryInfo = {
+    large: number,
+    reserved: number,
+    font: number
 }
+
+const defaultPosition: MemoryInfo = {
+    large: 4096,
+    reserved: 0x200,
+    font: 0x50
+};
 
 export class Memory {
     protected data: Array<null | number> = [];
+    protected _info: MemoryInfo;
 
     /**
-     * @param large Large memory in bytes. Default 4 kilobytes (4096 bytes)
-     * @param reserved Reserved bytes in started. Default 512 bytes (like COSMAC VIP)
+     * @param info {MemoryInfo?}
      */
-    constructor(large: number = MEMORY_DEFAULT_VALUE.LARGE, reserved: number = MEMORY_DEFAULT_VALUE.RESERVED_BYTES) {
-        this.data = new Array(large).fill(null);
-        for (let i = 0; reserved - 1 > i; i++) {
+    constructor(info?: MemoryInfo) {
+        this._info = Object.assign({}, defaultPosition, info);
+
+        this.data = new Array(this.info.large).fill(null);
+        for (let i = 0; this.info.reserved - 1 > i; i++) {
             this.data[i] = 0;
         }
+    }
+
+    /**
+     * Memory Info
+     * @return {MemoryInfo}
+     */
+    get info(): MemoryInfo {
+        return this._info;
     }
 
     /**

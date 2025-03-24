@@ -1,4 +1,3 @@
-import {MEMORY_DEFAULT_VALUE} from "./Memory.ts";
 import type {DI} from "./types.ts";
 import {defaultEmulatorOptions} from "./utils/options.ts";
 
@@ -10,6 +9,7 @@ export class Emulator {
      */
     constructor(options?: Partial<DI>) {
         this.di = Object.assign({}, defaultEmulatorOptions(), options);
+        this.di.memory.setMultiple(this.di.memory.info.font, this.di.font.bytes());
     }
 
     /**
@@ -17,8 +17,8 @@ export class Emulator {
      * @param program {number[]} Program bytes
      */
     async run(program: number[]) {
-        let pc = MEMORY_DEFAULT_VALUE.RESERVED_BYTES;
-        this.di.memory.setMultiple(MEMORY_DEFAULT_VALUE.RESERVED_BYTES, program);
+        let pc = this.di.memory.info.reserved;
+        this.di.memory.setMultiple(this.di.memory.info.reserved, program);
         this.di.display.clear();
 
         while (true) {
