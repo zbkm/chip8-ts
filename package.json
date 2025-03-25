@@ -2,6 +2,10 @@
   "name": "chip8-ts",
   "module": "src/index.ts",
   "type": "module",
+  "scripts": {
+    "test": "bun test",
+    "rom-test": "bun test --todo --only"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
