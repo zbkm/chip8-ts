@@ -3,6 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
+    "web": "bun app/web.ts",
     "test": "bun test",
     "rom-test": "bun test --todo --only"
   },

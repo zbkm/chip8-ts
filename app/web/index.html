@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHIP-8 Emulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: #00FF00;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .emulator-container {
+            border: 4px solid #00FF00;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .emulator-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        #chip8-canvas {
+            background-color: #111;
+            border: 2px solid #00FF00;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pixel-button {
+            background-color: #222;
+            color: #00FF00;
+            border: 2px solid #00FF00;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pixel-button:hover {
+            background-color: #333;
+        }
+
+        .pixel-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #rom {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="emulator-container">
+    <div class="emulator-title">CHIP-8 EMULATOR</div>
+    <canvas id="chip8-canvas" width="640" height="320"></canvas>
+
+    <div class="control-panel">
+        <input type="file" id="rom" accept=".ch8">
+        <button id="load-btn" class="pixel-button">
+            Load ROM
+        </button>
+        <button id="start" class="pixel-button">
+            Start
+        </button>
+        <button id="stop" class="pixel-button">
+            Stop
+        </button>
+    </div>
+</div>
+
+
+<script type="module" src="/emulator.js"></script>
+</body>
+</html>
