@@ -47,7 +47,7 @@ describe.only("ROM execute", () => {
         const display = new NoDisplay();
         const emulator = new Emulator({
             display,
-            delay: 1
+            interval: 1
         });
         emulator.run(Array.from(file));
         await new Promise(r => setTimeout(r, 1000));
