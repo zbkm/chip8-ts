@@ -23,7 +23,8 @@ export type DI = {
         delay: DelayTimer,
         sound: SoundTimer
     },
-    keypad: BaseKeypad
+    keypad: BaseKeypad,
+    delay: number
 }
 
 export type Keys = "1" | "2" | "3" | "C" |

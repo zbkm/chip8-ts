@@ -26,6 +26,7 @@ export const defaultEmulatorOptions = (): DI => {
             delay: new DelayTimer(),
             sound: new SoundTimer(new NoSound())
         },
-        keypad: new NoKeypad()
+        keypad: new NoKeypad(),
+        delay: 1
     };
 };

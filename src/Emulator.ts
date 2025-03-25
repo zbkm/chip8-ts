@@ -23,7 +23,7 @@ export class Emulator {
         this.di.memory.setMultiple(this.di.memory.info.reserved, program);
         this.di.display.clear();
 
-        this.timer = setInterval(this.step, 1);
+        this.timer = setInterval(this.step, this.di.delay);
     }
 
     /**
