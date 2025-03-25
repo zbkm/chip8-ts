@@ -1,0 +1,3 @@
+[submodule "lib/chip8-test-suite"]
+	path = lib/chip8-test-suite
+	url = https://github.com/Timendus/chip8-test-suite
