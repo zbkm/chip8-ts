@@ -16,9 +16,9 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("set timer delay", async () => {
         opcode.execute(di, new Instruction(0xF115));
-        expect(di.timers.delay.timer).toBe(0x0);
+        expect(di.delay.timer).toBe(0x0);
         di.vr.values[1] = 0xFF;
         opcode.execute(di, new Instruction(0xF115));
-        expect(di.timers.delay.timer).toBe(0xFF);
+        expect(di.delay.timer).toBe(0xFF);
     });
 });

@@ -13,6 +13,6 @@ export class TimerDelayGet extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction.x] = di.timers.delay.timer;
+        di.vr.values[instruction.x] = di.delay.timer;
     }
 }

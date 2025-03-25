@@ -13,6 +13,6 @@ export class TimerSoundSet extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.timers.sound.timer = di.vr.values[instruction.x];
+        di.sound.timer = di.vr.values[instruction.x];
     }
 }

@@ -22,11 +22,9 @@ export const defaultEmulatorOptions = (): DI => {
         vr: new VariableRegisters(),
         pc: new ProgramCounter(),
         instructions: getAllInstructions(),
-        timers: {
-            delay: new DelayTimer(),
-            sound: new SoundTimer(new NoSound())
-        },
+        delay: new DelayTimer(),
+        sound: new SoundTimer(new NoSound()),
         keypad: new NoKeypad(),
-        delay: 1
+        interval: 1
     };
 };

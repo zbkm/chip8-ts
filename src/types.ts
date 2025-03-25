@@ -19,12 +19,10 @@ export type DI = {
     font: BaseFont,
     pc: ProgramCounter,
     instructions: BaseInstruction[],
-    timers: {
-        delay: DelayTimer,
-        sound: SoundTimer
-    },
+    delay: DelayTimer,
+    sound: SoundTimer
     keypad: BaseKeypad,
-    delay: number
+    interval: number
 }
 
 export type Keys = "1" | "2" | "3" | "C" |
