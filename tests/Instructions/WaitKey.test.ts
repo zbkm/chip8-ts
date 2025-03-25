@@ -19,7 +19,7 @@ describe("Instruction execute", () => {
     test("key pressed", () => {
         di.vr.values[0x1] = 0x5;
         // @ts-ignore
-        di.keypad.key = "5";
+        di.keypad.key = 0x5;
         opcode.execute(di, new Instruction(0xF10A));
         expect(di.pc.value).toBe(0);
     });
@@ -27,7 +27,7 @@ describe("Instruction execute", () => {
         di.pc.value = 2;
         di.vr.values[0x1] = 0x3;
         // @ts-ignore
-        di.keypad.key = "A";
+        di.keypad.key = 0xA;
         opcode.execute(di, new Instruction(0xF10A));
         expect(di.pc.value).toBe(0);
     });

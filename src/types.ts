@@ -25,7 +25,7 @@ export type DI = {
     interval: number
 }
 
-export type Keys = "1" | "2" | "3" | "C" |
-    "4" | "5" | "6" | "D" |
-    "7" | "8" | "9" | "E" |
-    "A" | "0" | "B" | "F"
+export type Keys = 0x1 | 0x2 | 0x3 | 0xC |
+    0x4 | 0x5 | 0x6 | 0xD |
+    0x7 | 0x8 | 0x9 | 0xE |
+    0xA | 0x0 | 0xB | 0xF

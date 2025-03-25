@@ -13,7 +13,7 @@ export class WaitKey extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const key = di.vr.values[instruction.x].toString().toUpperCase();
+        const key = di.vr.values[instruction.x];
         if (di.keypad.key !== key) {
             di.pc.value -= 2;
         }
