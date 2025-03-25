@@ -5,8 +5,6 @@ import {NoDisplay} from "../../src/Displays/NoDisplay.ts";
 
 const file = await Bun.file("lib/chip8-test-suite/bin/2-ibm-logo.ch8").bytes();
 
-
-
 const resultScreenState = `
 ................................................................
 ................................................................
@@ -45,12 +43,13 @@ const resultScreenState = `
 describe.only("ROM execute", () => {
     test.todo("ibm logo", async () => {
         const display = new NoDisplay();
-        const emulator = new Emulator({
+        const emulator = new Emulator(Array.from(file), {
             display,
-            interval: 1
         });
-        emulator.run(Array.from(file));
-        await new Promise(r => setTimeout(r, 1000));
+
+        for (let i = 0; 20 > i; i++) {
+            await emulator.step();
+        }
         expect(display.state).toEqual(parseDisplay(resultScreenState));
     });
 });

@@ -8,9 +8,10 @@ if (Bun.argv.length == 2 || !await Bun.file(Bun.argv[2]).exists()) {
 }
 
 const file = await Bun.file(Bun.argv[2]).bytes();
-const emulator = new Emulator({
+const emulator = new Emulator(
+    Array.from(file), {
     display: new ConsoleDisplay(),
     keypad: new ConsoleKeypad()
 });
 
-emulator.run(Array.from(file));
+emulator.run();

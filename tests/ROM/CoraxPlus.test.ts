@@ -43,14 +43,16 @@ const resultScreenState = `
 describe.only("ROM execute", () => {
     test.todo("pass all tests", async () => {
         const display = new NoDisplay();
-        const emulator = new Emulator({
+        const emulator = new Emulator(Array.from(file), {
             display,
-            interval: 0
         });
-        emulator.run(Array.from(file));
-        await new Promise(r => setTimeout(r, 7000));
+
+        for (let i = 0; 400 > i; i++) {
+            await emulator.step();
+        }
+
         expect(display.state).toEqual(parseDisplay(resultScreenState));
-    }, 8000);
+    });
 });
 
 

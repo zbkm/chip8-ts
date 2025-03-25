@@ -9,35 +9,22 @@ const loadBtn = document.getElementById("load-btn")!;
 const startBtn = document.getElementById("start")!;
 const stopBtn = document.getElementById("stop")!;
 const romFileInput = document.getElementById("rom") as HTMLInputElement;
-
-startBtn.addEventListener("click", startEmulator);
-stopBtn.addEventListener("click", stopEmulator);
-
-
 let em: Emulator | undefined;
 
-async function startEmulator() {
-    const file = romFileInput.files![0];
+loadBtn.addEventListener("click", () => romFileInput.click());
+
+romFileInput.addEventListener("change", async (event) => {
+    const file = (event.target as HTMLInputElement).files![0];
+    loadBtn.textContent = file ? `Loaded: ${file.name}` : `Load ROM`;
     const ctx = canvas.getContext("2d")!;
     ctx.fillStyle = "#00FF00";
 
-    em = new Emulator({
+    em = new Emulator([...new Uint8Array(await file.arrayBuffer())], {
         display: new CanvasDisplay(ctx),
         keypad: new BrowserKeypad(),
         sound: new SoundTimer(new BrowserSound())
     });
-    em.run([...new Uint8Array(await file.arrayBuffer())]);
-}
-
-async function stopEmulator() {
-    if (em) {
-        em.stop();
-    }
-}
-
-loadBtn.addEventListener("click", () => {romFileInput.click();});
-
-romFileInput.addEventListener("change", (event) => {
-    const file = (event.target as HTMLInputElement).files![0];
-    loadBtn.textContent = file ? `Loaded: ${file.name}` : `Load ROM`;
 });
+
+startBtn.addEventListener("click", () => em?.run());
+stopBtn.addEventListener("click", () => em?.stop());
