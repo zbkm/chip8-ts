@@ -5,10 +5,10 @@ import {type Keys} from "../types.ts";
 export class BrowserKeypad extends BaseKeypad {
     protected _key: Keys | null = null;
     keyMapping: Record<string, Keys> = {
-        "1": 0x1, "2": 0x2, "3": 0x3, "4": 0xC,
-        "Q": 0x4, "W": 0x5, "E": 0x6, "R": 0xD,
-        "A": 0x7, "S": 0x8, "D": 0x9, "F": 0xE,
-        "Z": 0xA, "X": 0x0, "C": 0xB, "V": 0xF
+        "Digit1": 0x1, "Digit2": 0x2, "Digit3": 0x3, "Digit4": 0xC,
+        "KeyQ": 0x4, "KeyW": 0x5, "KeyE": 0x6, "KeyR": 0xD,
+        "KeyA": 0x7, "KeyS": 0x8, "KeyD": 0x9, "KeyF": 0xE,
+        "KeyZ": 0xA, "KeyX": 0x0, "KeyC": 0xB, "KeyV": 0xF
     };
 
     constructor() {
@@ -29,8 +29,7 @@ export class BrowserKeypad extends BaseKeypad {
      * @param event {KeyboardEvent}
      */
     protected handlePress = (event: KeyboardEvent) => {
-        const pressedKey = event.key.toUpperCase();
-
+        const pressedKey = event.code;
         if (pressedKey in this.keyMapping) {
             event.preventDefault();
             this._key = this.keyMapping[pressedKey];
@@ -42,7 +41,7 @@ export class BrowserKeypad extends BaseKeypad {
      * @param event {KeyboardEvent}
      */
     protected handleUnPress = (event: KeyboardEvent) => {
-        const unPressedKey = event.key.toUpperCase();
+        const unPressedKey = event.code;
         if (unPressedKey in this.keyMapping) {
             this._key = null;
         }
