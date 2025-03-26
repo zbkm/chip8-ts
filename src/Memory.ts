@@ -1,31 +1,20 @@
-type MemoryInfo = {
-    large: number,
-    reserved: number,
-    font: number
-}
-
-const defaultPosition: MemoryInfo = {
-    large: 4096,
-    reserved: 0x200,
-    font: 0x50
-};
+import type {MemoryInfo} from "./types.ts";
 
 export class Memory {
-    protected data: Array<null | number> = [];
+    protected data: Array<number> = [];
+    protected _info: MemoryInfo = {
+        large: 4096,
+        reserved: 0x200,
+        font: 0x50
+    };
 
     /**
      * @param info {MemoryInfo?}
      */
     constructor(info?: MemoryInfo) {
-        this._info = Object.assign({}, defaultPosition, info);
-
-        this.data = new Array(this.info.large).fill(null);
-        for (let i = 0; this.info.reserved - 1 > i; i++) {
-            this.data[i] = 0;
-        }
+        this._info = Object.assign({}, this._info, info);
+        this.data = new Array(this.info.large).fill(0);
     }
-
-    protected _info: MemoryInfo;
 
     /**
      * Memory Info
@@ -40,15 +29,16 @@ export class Memory {
      * @param position Position
      * @param value
      */
-    public save(position: number, value: number) {
+    public save(position: number, value: number): void {
         this.data[position - 1] = value;
     }
 
     /**
      * Get data from memory
      * @param position Element position
+     * @returns {number} value
      */
-    public get(position: number): number | null {
+    public get(position: number): number {
         return this.data[position - 1];
     }
 
@@ -56,8 +46,9 @@ export class Memory {
      * Get multiple values from memory
      * @param position {number} Start elements position
      * @param length {number} Length
+     * @returns {number[]} values
      */
-    public getMultiple(position: number, length: number): (number | null)[] {
+    public getMultiple(position: number, length: number): number[] {
         return this.data.slice(position - 1, position - 1 + length);
     }
 
@@ -67,7 +58,7 @@ export class Memory {
      * @param position Starting position of the save
      * @param values Array with byte values
      */
-    public setMultiple(position: number, values: number[]) {
+    public setMultiple(position: number, values: number[]): void {
         for (const value of values) {
             this.save(position, value);
             position++;

@@ -41,7 +41,9 @@ export class Emulator {
      * Execution step
      */
     public step = async () => {
-        const instruction = new Instruction(this.di.memory.get(this.di.pc.value)! << 8 | this.di.memory.get(this.di.pc.value + 1)!);
+        const instruction = new Instruction(
+            this.di.memory.get(this.di.pc.value) << 8 | this.di.memory.get(this.di.pc.value + 1)
+        );
 
         this.di.pc.value = this.di.pc.value + 2;
         const opcode = this.di.instructions.find(instr => instr.matches(instruction));
