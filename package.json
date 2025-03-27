@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "console": "bun app/console.ts",
-    "web": "bun app/web.ts",
+    "web": "bun app/web/server.ts",
     "test": "bun test",
-    "rom-test": "bun test --todo --only"
+    "rom-test": "bun test --todo --only",
+    "build-web": "bun run app/web/build.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
