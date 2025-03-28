@@ -16,6 +16,6 @@ describe("Instruction execute", () => {
     test("return", () => {
         di.stack.push(0x250);
         opcode.execute(di, new Instruction(0x00EE));
-        expect(di.pc.value).toBe(0x250);
+        expect(di.pc).toBe(0x250);
     });
 });

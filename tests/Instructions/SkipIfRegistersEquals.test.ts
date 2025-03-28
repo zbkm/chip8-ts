@@ -15,16 +15,16 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("skip instruction", () => {
-        di.pc.value = 0x0;
+        di.pc = 0x0;
         di.vr.values[0x1] = 0xEE;
         di.vr.values[0x2] = 0xEE;
         opcode.execute(di, new Instruction(0x5120));
-        expect(di.pc.value).toBe(0x2);
+        expect(di.pc).toBe(0x2);
     });
     test("dont skip instruction", () => {
-        di.pc.value = 0x0;
+        di.pc = 0x0;
         di.vr.values[0x1] = 0xEE;
         opcode.execute(di, new Instruction(0x5160));
-        expect(di.pc.value).toBe(0x0);
+        expect(di.pc).toBe(0x0);
     });
 });

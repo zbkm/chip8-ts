@@ -14,14 +14,14 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("jump with 0 offset", () => {
-        di.pc.value = 0x10;
+        di.pc = 0x10;
         opcode.execute(di, new Instruction(0xB1E3));
-        expect(di.pc.value).toBe(0x1E3);
+        expect(di.pc).toBe(0x1E3);
     });
     test("jump with offset", () => {
-        di.pc.value = 0x10;
+        di.pc = 0x10;
         di.vr.values[0] = 0x10;
         opcode.execute(di, new Instruction(0xB1E3));
-        expect(di.pc.value).toBe(0x1F3);
+        expect(di.pc).toBe(0x1F3);
     });
 });

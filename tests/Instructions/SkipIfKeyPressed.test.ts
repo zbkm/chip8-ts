@@ -21,13 +21,13 @@ describe("Instruction execute", () => {
         // @ts-ignore
         di.keypad.key = 0x5;
         opcode.execute(di, new Instruction(0xE19E));
-        expect(di.pc.value).toBe(2);
+        expect(di.pc).toBe(2);
     });
     test("key don't pressed", () => {
         di.vr.values[0x1] = 0x3;
         // @ts-ignore
         di.keypad.key = 0xA;
         opcode.execute(di, new Instruction(0xE19E));
-        expect(di.pc.value).toBe(2);
+        expect(di.pc).toBe(2);
     });
 });

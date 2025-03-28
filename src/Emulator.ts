@@ -14,7 +14,7 @@ export class Emulator {
         this.di = Object.assign({}, defaultEmulatorOptions(), options);
         this.di.memory.setMultiple(this.di.memory.info.font, this.di.font.bytes());
 
-        this.di.pc.value = this.di.memory.info.reserved;
+        this.di.pc = this.di.memory.info.reserved;
         this.di.memory.setMultiple(this.di.memory.info.reserved, program);
         this.di.display.clear();
     }
@@ -42,10 +42,10 @@ export class Emulator {
      */
     public step = async () => {
         const instruction = new Instruction(
-            this.di.memory.get(this.di.pc.value) << 8 | this.di.memory.get(this.di.pc.value + 1)
+            this.di.memory.get(this.di.pc) << 8 | this.di.memory.get(this.di.pc + 1)
         );
 
-        this.di.pc.value = this.di.pc.value + 2;
+        this.di.pc = this.di.pc + 2;
         const opcode = this.di.instructions.find(instr => instr.matches(instruction));
 
         if (opcode) {

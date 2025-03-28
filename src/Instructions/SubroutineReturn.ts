@@ -13,6 +13,6 @@ export class SubroutineReturn extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, _: Instruction): void {
-        di.pc.value = di.stack.pop();
+        di.pc = di.stack.pop();
     }
 }

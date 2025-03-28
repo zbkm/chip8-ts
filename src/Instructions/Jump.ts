@@ -13,6 +13,6 @@ export class Jump extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.pc.value = instruction.nnn;
+        di.pc = instruction.nnn;
     }
 }

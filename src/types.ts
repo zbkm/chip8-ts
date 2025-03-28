@@ -4,11 +4,12 @@ import {IndexRegister} from "./IndexRegister.ts";
 import {VariableRegisters} from "./VariableRegisters.ts";
 import {BaseDisplay} from "./Displays/BaseDisplay.ts";
 import {BaseFont} from "./Fonts/BaseFont.ts";
-import type {ProgramCounter} from "./ProgramCounter.ts";
 import type {BaseInstruction} from "./Instructions/BaseInstruction.ts";
 import type {DelayTimer} from "./Timers/DelayTimer.ts";
 import type {SoundTimer} from "./Timers/SoundTimer.ts";
 import type {BaseKeypad} from "./Keypad/BaseKeypad.ts";
+
+type ProgramCounter = number;
 
 export type DI = {
     stack: Stack,

@@ -15,7 +15,7 @@ export class SkipIfKeyPressed extends BaseInstruction {
     execute(di: DI, instruction: Instruction): void {
         const key = di.vr.values[instruction.x];
         if (di.keypad.key === key) {
-            di.pc.value += 2;
+            di.pc += 2;
         }
     }
 }

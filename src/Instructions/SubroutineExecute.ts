@@ -13,7 +13,7 @@ export class SubroutineExecute extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.stack.push(di.pc.value);
-        di.pc.value = instruction.nnn;
+        di.stack.push(di.pc);
+        di.pc = instruction.nnn;
     }
 }

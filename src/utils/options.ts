@@ -4,7 +4,6 @@ import {IndexRegister} from "../IndexRegister.ts";
 import {Memory} from "../Memory.ts";
 import {Stack} from "../Stack.ts";
 import {VariableRegisters} from "../VariableRegisters.ts";
-import {ProgramCounter} from "../ProgramCounter.ts";
 import {getAllInstructions} from "../Instructions";
 import {DelayTimer} from "../Timers/DelayTimer.ts";
 import {SoundTimer} from "../Timers/SoundTimer.ts";
@@ -20,7 +19,7 @@ export const defaultEmulatorOptions = (): DI => {
         memory: new Memory(),
         stack: new Stack(),
         vr: new VariableRegisters(),
-        pc: new ProgramCounter(),
+        pc: 0,
         instructions: getAllInstructions(),
         delay: new DelayTimer(),
         sound: new SoundTimer(new NoSound()),

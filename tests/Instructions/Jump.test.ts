@@ -14,8 +14,8 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("return", () => {
-        di.pc.value = 0x10;
+        di.pc = 0x10;
         opcode.execute(di, new Instruction(0x11E3));
-        expect(di.pc.value).toBe(0x1E3);
+        expect(di.pc).toBe(0x1E3);
     });
 });

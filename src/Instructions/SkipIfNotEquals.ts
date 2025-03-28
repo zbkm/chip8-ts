@@ -15,7 +15,7 @@ export class SkipIfNotEquals extends BaseInstruction {
     execute(di: DI, instruction: Instruction): void {
         const vx = di.vr.values[instruction.x];
         if (vx !== instruction.nn) {
-            di.pc.value += 2;
+            di.pc += 2;
         }
     }
 }

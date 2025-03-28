@@ -16,7 +16,7 @@ export class SkipIfRegistersEquals extends BaseInstruction {
         const vx = di.vr.values[instruction.x];
         const vy = di.vr.values[instruction.y];
         if (vx === vy) {
-            di.pc.value += 2;
+            di.pc += 2;
         }
     }
 }
