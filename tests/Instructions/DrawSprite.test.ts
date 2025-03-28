@@ -17,7 +17,7 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("draw", () => {
         di.memory.setMultiple(0x100, [0xF0, 0x90, 0x90, 0x90, 0xF0]);
-        di.ir.value = 0x100;
+        di.ir = 0x100;
         di.vr.values[0x1] = 0x5;
         di.vr.values[0x2] = 0x5;
         di.vr.values[0xF] = 0x1; // vF flag should be 0 after instruction exec
@@ -63,7 +63,7 @@ describe("Instruction execute", () => {
         expect(di.vr.values[0xF]).toBe(0);
     });
     test("clear sprite", () => {
-        di.ir.value = 0x100;
+        di.ir = 0x100;
         opcode.execute(di, new Instruction(0xD125));
         expect(di.vr.values[0xF]).toBe(1);
         expect(di.display.state.flat()).not.toContain(true);

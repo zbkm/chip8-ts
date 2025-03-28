@@ -17,9 +17,9 @@ describe("Instruction execute", () => {
     test("get font character", () => {
         di.vr.values[1] = 0x5;
         opcode.execute(di, new Instruction(0xF11E));
-        expect(di.ir.value).toBe(0x69);
+        expect(di.ir).toBe(0x69);
         di.vr.values[1] = 0xF;
         opcode.execute(di, new Instruction(0xF11E));
-        expect(di.ir.value).toBe(0x9b);
+        expect(di.ir).toBe(0x9b);
     });
 });

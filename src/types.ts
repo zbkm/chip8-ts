@@ -1,6 +1,5 @@
 import {Stack} from "./Stack.ts";
 import {Memory} from "./Memory.ts";
-import {IndexRegister} from "./IndexRegister.ts";
 import {VariableRegisters} from "./VariableRegisters.ts";
 import {BaseDisplay} from "./Displays/BaseDisplay.ts";
 import {BaseFont} from "./Fonts/BaseFont.ts";
@@ -10,6 +9,7 @@ import type {SoundTimer} from "./Timers/SoundTimer.ts";
 import type {BaseKeypad} from "./Keypad/BaseKeypad.ts";
 
 type ProgramCounter = number;
+type IndexRegister = number;
 
 export type DI = {
     stack: Stack,

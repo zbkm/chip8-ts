@@ -15,6 +15,6 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("store i register", () => {
         opcode.execute(di, new Instruction(0xA1EE));
-        expect(di.ir.value).toBe(0x1EE);
+        expect(di.ir).toBe(0x1EE);
     });
 });

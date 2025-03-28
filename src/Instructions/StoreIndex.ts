@@ -13,6 +13,6 @@ export class StoreIndex extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.ir.value = instruction.nnn;
+        di.ir = instruction.nnn;
     }
 }

@@ -13,8 +13,8 @@ export class AddToIndex extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.ir.value = (
-            di.vr.values[instruction.x] + di.ir.value
+        di.ir = (
+            di.vr.values[instruction.x] + di.ir
         ) & 0xFFFF;
         // COSMAC VIP dont set VF on overflow
     }

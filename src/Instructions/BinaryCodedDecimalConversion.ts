@@ -15,8 +15,8 @@ export class BinaryCodedDecimalConversion extends BaseInstruction {
     execute(di: DI, instruction: Instruction): void {
         const number = di.vr.values[instruction.x];
 
-        di.memory.save(di.ir.value, ~~(number / 100));
-        di.memory.save(di.ir.value + 1, ~~(number / 10 % 10));
-        di.memory.save(di.ir.value + 2, number % 10);
+        di.memory.save(di.ir, ~~(number / 100));
+        di.memory.save(di.ir + 1, ~~(number / 10 % 10));
+        di.memory.save(di.ir + 2, number % 10);
     }
 }

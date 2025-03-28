@@ -16,18 +16,18 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("add value to i register", () => {
         opcode.execute(di, new Instruction(0xF11E));
-        expect(di.ir.value).toBe(0x0);
+        expect(di.ir).toBe(0x0);
         di.vr.values[1] = 0x100;
         opcode.execute(di, new Instruction(0xF11E));
-        expect(di.ir.value).toBe(0x100);
+        expect(di.ir).toBe(0x100);
         di.vr.values[1] = 0x100;
         opcode.execute(di, new Instruction(0xF11E));
-        expect(di.ir.value).toBe(0x200);
+        expect(di.ir).toBe(0x200);
     });
     test("overflow", () => {
-        di.ir.value = 0xFFFF;
+        di.ir = 0xFFFF;
         di.vr.values[1] = 0x1;
         opcode.execute(di, new Instruction(0xF11E));
-        expect(di.ir.value).toBe(0x0);
+        expect(di.ir).toBe(0x0);
     });
 });

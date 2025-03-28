@@ -15,7 +15,7 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("bcd", () => {
-        di.ir.value = 0x250;
+        di.ir = 0x250;
         di.vr.values[1] = 0x9C;
         opcode.execute(di, new Instruction(0xF11E));
         expect(di.memory.get(0x250)).toBe(0x1);
