@@ -13,8 +13,8 @@ export class SkipIfRegistersNotEquals extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const vx = di.vr.values[instruction.x];
-        const vy = di.vr.values[instruction.y];
+        const vx = di.vr.get(instruction.x);
+        const vy = di.vr.get(instruction.y);
         if (vx !== vy) {
             di.pc += 2;
         }

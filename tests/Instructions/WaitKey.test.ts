@@ -17,7 +17,7 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("key pressed", () => {
-        di.vr.values[0x1] = 0x5;
+        di.vr.set(0x1, 0x5);
         // @ts-ignore
         di.keypad.key = 0x5;
         opcode.execute(di, new Instruction(0xF10A));
@@ -25,7 +25,7 @@ describe("Instruction execute", () => {
     });
     test("key don't pressed", () => {
         di.pc = 2;
-        di.vr.values[0x1] = 0x3;
+        di.vr.set(0x1, 0x3);
         // @ts-ignore
         di.keypad.key = 0xA;
         opcode.execute(di, new Instruction(0xF10A));

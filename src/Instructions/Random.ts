@@ -13,6 +13,7 @@ export class Random extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction.x] = Math.floor(Math.random() * 0xFF) & instruction.nn;
+        const randomResult = Math.floor(Math.random() * 0xFF) & instruction.nn;
+        di.vr.set(instruction.x, randomResult);
     }
 }

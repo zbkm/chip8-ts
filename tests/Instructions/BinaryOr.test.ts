@@ -14,10 +14,10 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("or", () => {
-        di.vr.values[0x4] = 0x5;
-        di.vr.values[0x5] = 0x3;
+        di.vr.set(0x4, 0x5);
+        di.vr.set(0x5, 0x3);
         opcode.execute(di, new Instruction(0x8451));
-        expect(di.vr.values[0x4]).toBe(0x7);
-        expect(di.vr.values[0x5]).toBe(0x3);
+        expect(di.vr.get(0x4)).toBe(0x7);
+        expect(di.vr.get(0x5)).toBe(0x3);
     });
 });

@@ -15,8 +15,8 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("add value to register", () => {
         opcode.execute(di, new Instruction(0x7112));
-        expect(di.vr.values[1]).toBe(0x12);
+        expect(di.vr.get(1)).toBe(0x12);
         opcode.execute(di, new Instruction(0x71FF));
-        expect(di.vr.values[1]).toBe(0x11);
+        expect(di.vr.get(1)).toBe(0x11);
     });
 });

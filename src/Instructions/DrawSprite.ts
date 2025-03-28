@@ -14,9 +14,9 @@ export class DrawSprite extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const x = di.vr.values[instruction.x];
-        const y = di.vr.values[instruction.y];
+        const x = di.vr.get(instruction.x);
+        const y = di.vr.get(instruction.y);
         const sprite = di.memory.getMultiple(di.ir, instruction.n);
-        di.vr.values[0xF] = +di.display.drawSprite(x, y, sprite);
+        di.vr.set(0xF, +di.display.drawSprite(x, y, sprite));
     }
 }

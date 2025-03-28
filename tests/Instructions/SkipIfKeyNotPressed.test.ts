@@ -17,14 +17,14 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("key pressed", () => {
-        di.vr.values[0x1] = 0x5;
+        di.vr.set(0x1, 0x5);
         // @ts-ignore
         di.keypad.key = 0x5;
         opcode.execute(di, new Instruction(0xE1A1));
         expect(di.pc).toBe(0);
     });
     test("key don't pressed", () => {
-        di.vr.values[0x1] = 0x3;
+        di.vr.set(0x1, 0x3);
         // @ts-ignore
         di.keypad.key = 0xE;
         opcode.execute(di, new Instruction(0xE1A1));

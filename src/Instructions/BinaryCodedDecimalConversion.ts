@@ -13,7 +13,7 @@ export class BinaryCodedDecimalConversion extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const number = di.vr.values[instruction.x];
+        const number = di.vr.get(instruction.x);
 
         di.memory.save(di.ir, ~~(number / 100));
         di.memory.save(di.ir + 1, ~~(number / 10 % 10));

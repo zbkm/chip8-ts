@@ -13,7 +13,7 @@ export class SkipIfKeyNotPressed extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const key = di.vr.values[instruction.x];
+        const key = di.vr.get(instruction.x);
         if (di.keypad.key !== key) {
             di.pc += 2;
         }

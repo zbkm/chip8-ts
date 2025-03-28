@@ -15,10 +15,10 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("store vy in vx", () => {
-        di.vr.values[0x4] = 0xE;
-        di.vr.values[0x5] = 0xF;
+        di.vr.set(0x4, 0xE);
+        di.vr.set(0x5, 0xF);
         opcode.execute(di, new Instruction(0x8450));
-        expect(di.vr.values[0x4]).toBe(0xF);
-        expect(di.vr.values[0x5]).toBe(0xF);
+        expect(di.vr.get(0x4)).toBe(0xF);
+        expect(di.vr.get(0x5)).toBe(0xF);
     });
 });

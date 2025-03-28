@@ -13,6 +13,6 @@ export class CopyRegister extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction.x] = di.vr.values[instruction.y];
+        di.vr.set(instruction.x, di.vr.get(instruction.y));
     }
 }

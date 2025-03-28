@@ -15,10 +15,10 @@ test("Instruction match", () => {
 
 describe("Instruction execute", () => {
     test("get font character", () => {
-        di.vr.values[1] = 0x5;
+        di.vr.set(1, 0x5);
         opcode.execute(di, new Instruction(0xF11E));
         expect(di.ir).toBe(0x69);
-        di.vr.values[1] = 0xF;
+        di.vr.set(1, 0xF);
         opcode.execute(di, new Instruction(0xF11E));
         expect(di.ir).toBe(0x9b);
     });

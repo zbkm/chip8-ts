@@ -17,7 +17,7 @@ describe("Instruction execute", () => {
     test("set timer delay", async () => {
         opcode.execute(di, new Instruction(0xF118));
         expect(di.sound.timer).toBe(0x0);
-        di.vr.values[1] = 0xFF;
+        di.vr.set(1, 0xFF);
         opcode.execute(di, new Instruction(0xF118));
         expect(di.sound.timer).toBe(0xFF);
     });

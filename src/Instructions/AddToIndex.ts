@@ -14,7 +14,7 @@ export class AddToIndex extends BaseInstruction {
      */
     execute(di: DI, instruction: Instruction): void {
         di.ir = (
-            di.vr.values[instruction.x] + di.ir
+            di.vr.get(instruction.x) + di.ir
         ) & 0xFFFF;
         // COSMAC VIP dont set VF on overflow
     }

@@ -15,8 +15,8 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("store v register", () => {
         opcode.execute(di, new Instruction(0x61EE));
-        expect(di.vr.values[1]).toBe(0xEE);
+        expect(di.vr.get(1)).toBe(0xEE);
         opcode.execute(di, new Instruction(0x6315));
-        expect(di.vr.values[3]).toBe(0x15);
+        expect(di.vr.get(3)).toBe(0x15);
     });
 });

@@ -13,8 +13,9 @@ export class AddToRegister extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction.x] = (
-            di.vr.values[instruction.x] + instruction.nn
+        const registerValue = (
+            di.vr.get(instruction.x) + instruction.nn
         ) & 0xFF;
+        di.vr.set(instruction.x, registerValue);
     }
 }

@@ -13,6 +13,6 @@ export class JumpWithOffset extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.pc = instruction.nnn + di.vr.values[0];
+        di.pc = instruction.nnn + di.vr.get(0x0);
     }
 }

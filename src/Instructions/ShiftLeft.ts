@@ -15,8 +15,11 @@ export class ShiftLeft extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const value = di.vr.values[instruction.y];
-        di.vr.values[instruction.x] = (value << 1) & 0xFF;
-        di.vr.values[0xF] = (value & 0x80) ? 1 : 0; // shifted bit. 0x80 - 0b10000000 - MSb
+        const value = di.vr.get(instruction.y);
+        const shiftedResult = (value << 1) & 0xFF;
+        const shiftedBit = (value & 0x80) ? 1 : 0; // 0x80 - 0b10000000 - MSb
+
+        di.vr.set(instruction.x, shiftedResult);
+        di.vr.set(0xF, shiftedBit);
     }
 }

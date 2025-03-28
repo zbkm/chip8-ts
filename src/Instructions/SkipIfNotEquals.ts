@@ -13,7 +13,7 @@ export class SkipIfNotEquals extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const vx = di.vr.values[instruction.x];
+        const vx = di.vr.get(instruction.x);
         if (vx !== instruction.nn) {
             di.pc += 2;
         }

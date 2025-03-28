@@ -13,6 +13,6 @@ export class StoreRegister extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction.x] = instruction.nn;
+        di.vr.set(instruction.x, instruction.nn);
     }
 }

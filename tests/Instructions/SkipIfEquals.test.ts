@@ -15,7 +15,7 @@ test("Instruction match", () => {
 describe("Instruction execute", () => {
     test("skip instruction", () => {
         di.pc = 0x0;
-        di.vr.values[0x1] = 0xEE;
+        di.vr.set(0x1, 0xEE);
         opcode.execute(di, new Instruction(0x31EE));
         expect(di.pc).toBe(0x2);
     });

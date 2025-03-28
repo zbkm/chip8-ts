@@ -20,7 +20,7 @@ describe("Instruction execute", () => {
     });
     test("jump with offset", () => {
         di.pc = 0x10;
-        di.vr.values[0] = 0x10;
+        di.vr.set(0, 0x10);
         opcode.execute(di, new Instruction(0xB1E3));
         expect(di.pc).toBe(0x1F3);
     });

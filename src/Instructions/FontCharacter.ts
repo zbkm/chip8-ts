@@ -13,7 +13,7 @@ export class FontCharacter extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const characterSymbol = di.vr.values[instruction.x] & 0xF; // An 8-bit register can hold two hexadecimal numbers, but this would only point to one character
+        const characterSymbol = di.vr.get(instruction.x) & 0xF; // An 8-bit register can hold two hexadecimal numbers, but this would only point to one character
         di.ir = di.memory.info.font + characterSymbol * 0x5;
     }
 }

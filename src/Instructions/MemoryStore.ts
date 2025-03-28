@@ -15,7 +15,7 @@ export class MemoryStore extends BaseInstruction {
      */
     execute(di: DI, instruction: Instruction): void {
         for (let i = 0; instruction.x >= i; i++) {
-            di.memory.save(i + di.ir, di.vr.values[i]);
+            di.memory.save(i + di.ir, di.vr.get(i));
         }
 
         // The original CHIP-8 interpreter for the COSMAC VIP actually incremented the I register while it worked

@@ -15,8 +15,11 @@ export class ShiftRight extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const value = di.vr.values[instruction.y];
-        di.vr.values[instruction.x] = value >> 1;
-        di.vr.values[0xF] = value & 1; // bit shifted out - LSb
+        const value = di.vr.get(instruction.y);
+        const shiftedResult = value >> 1;
+        const shiftedBit = value & 1; // bit shifted out - LSb
+
+        di.vr.set(instruction.x, shiftedResult);
+        di.vr.set(0xF, shiftedBit);
     }
 }

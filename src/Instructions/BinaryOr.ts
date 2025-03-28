@@ -13,6 +13,7 @@ export class BinaryOr extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        di.vr.values[instruction.x] = di.vr.values[instruction.x] | di.vr.values[instruction.y];
+        const binaryOrResult = di.vr.get(instruction.x) | di.vr.get(instruction.y);
+        di.vr.set(instruction.x, binaryOrResult);
     }
 }

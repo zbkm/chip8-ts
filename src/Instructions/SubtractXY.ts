@@ -15,9 +15,12 @@ export class SubtractXY extends BaseInstruction {
      * @inheritDoc
      */
     execute(di: DI, instruction: Instruction): void {
-        const minuend = di.vr.values[instruction.x];
-        const subtrahend = di.vr.values[instruction.y];
-        di.vr.values[instruction.x] = (minuend - subtrahend) & 0xFF;
-        di.vr.values[0xF] = minuend >= subtrahend ? 0x1 : 0x0; // 1 for not occur and 0 for occur
+        const minuend = di.vr.get(instruction.x);
+        const subtrahend = di.vr.get(instruction.y);
+        const subtractResult = (minuend - subtrahend) & 0xFF;
+        const isNotOccur = minuend >= subtrahend ? 0x1 : 0x0;  // 1 for not occur and 0 for occur
+
+        di.vr.set(instruction.x, subtractResult);
+        di.vr.set(0xF, isNotOccur);
     }
 }
